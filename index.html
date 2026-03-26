@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Wedding Invitation</title>
+  <style>
+    :root {
+      --bg: #f8f5f1;
+      --card: rgba(255, 255, 255, 0.88);
+      --text: #2f2a26;
+      --muted: #6f665f;
+      --accent: #b78963;
+      --accent-dark: #9d6f4c;
+      --border: #e7ddd4;
+      --shadow: 0 18px 40px rgba(70, 48, 35, 0.12);
+      --radius: 24px;
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(183, 137, 99, 0.14), transparent 28%),
+        linear-gradient(180deg, #fcfaf8 0%, var(--bg) 100%);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 3rem 0;
+    }
+
+    .hero-card {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+
+    .hero-image {
+      min-height: 540px;
+      background: #efe7e0;
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-content {
+      padding: 4.25rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.78rem;
+      color: var(--accent-dark);
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 34ch;
+    }
+
+    .details {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .detail {
+      padding: 1rem 1.1rem;
+      background: rgba(183, 137, 99, 0.08);
+      border: 1px solid rgba(183, 137, 99, 0.14);
+      border-radius: 18px;
+    }
+
+    .detail strong {
+      display: block;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .button {
+      padding: 0.95rem 1.35rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      transition: 0.2s ease;
+      font-size: 0.98rem;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .button.secondary {
+      background: white;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(183, 137, 99, 0.18);
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .section-heading p {
+      margin-top: 0.8rem;
+      color: var(--muted);
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: 0 8px 25px rgba(90, 66, 51, 0.08);
+    }
+
+    .timeline-item + .timeline-item {
+      margin-top: 1.2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .timeline-item span {
+      display: inline-block;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 0.35rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .photo {
+      background: #eee5dc;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      min-height: 260px;
+      position: relative;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-label {
+      position: absolute;
+      bottom: 0.75rem;
+      left: 0.75rem;
+      background: rgba(255,255,255,0.82);
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.86rem;
+    }
+
+    .rsvp {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .rsvp .card p,
+    .travel .card p {
+      color: var(--muted);
+    }
+
+    .travel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 920px) {
+      .hero-card,
+      .story,
+      .rsvp,
+      .travel-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        min-height: 360px;
+      }
+
+      .hero-content {
+        padding: 2.5rem 1.4rem;
+      }
+
+      section {
+        padding: 3.8rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="hero-image">
+          <!-- Replace with your main engagement or wedding photo -->
+          <img src="images/hero-photo.jpg" alt="Bride and groom smiling together" />
+        </div>
+
+        <div class="hero-content">
+          <div class="eyebrow">You’re invited to celebrate</div>
+          <h1>Emma <br>&amp; Noah</h1>
+          <p class="subtitle">
+            With joyful hearts, we invite you to join us as we begin our next chapter together.
+          </p>
+
+          <div class="details">
+            <div class="detail">
+              <strong>Date</strong>
+              Saturday, June 20, 2026
+            </div>
+            <div class="detail">
+              <strong>Time</strong>
+              Ceremony at 4:00 PM · Reception to follow
+            </div>
+            <div class="detail">
+              <strong>Location</strong>
+              Willow Creek Garden Venue<br />
+              Provo, Utah
+            </div>
+          </div>
+
+          <div class="button-row">
+            <a class="button primary" href="#rsvp">RSVP</a>
+            <a class="button secondary" href="#gallery">View Photos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Our story</div>
+          <h2>A little about us</h2>
+          <p>
+            Add your story here so guests get a feel for your relationship, your personalities, and why this day matters to you.
+          </p>
+        </div>
+
+        <div class="story">
+          <div class="card">
+            <h3>How we met</h3>
+            <p>
+              Replace this paragraph with your own story. You can write a short and sweet version, or add a few fun details your family and friends will love.
+            </p>
+            <p>
+              Example: We met through friends, bonded over late-night milkshakes, and quickly realized life was better together.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Favorite moments</h3>
+            <div class="timeline-item">
+              <span>First date</span>
+              <p>Write a quick memory here.</p>
+            </div>
+            <div class="timeline-item">
+              <span>The proposal</span>
+              <p>Share a short version of how it happened.</p>
+            </div>
+            <div class="timeline-item">
+              <span>What we’re excited for</span>
+              <p>Add a note about marriage, the wedding day, or your future together.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Photos</div>
+          <h2>Wedding gallery</h2>
+          <p>
+            These image tags are ready for you to swap with your own files. Put your images in an <strong>images</strong> folder and update the file names if needed.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="photo">
+            <img src="images/photo-1.jpg" alt="Couple photo 1" />
+            <div class="photo-label">Photo 1</div>
+          </div>
+          <div class="photo">
+            <img src="images/photo-2.jpg" alt="Couple photo 2" />
+            <div class="photo-label">Photo 2</div>
+          </div>
+          <div class="photo">
+            <img src="images/photo-3.jpg" alt="Couple photo 3" />
+            <div class="photo-label">Photo 3</div>
+          </div>
+          <div class="photo">
+            <img src="images/photo-4.jpg" alt="Couple photo 4" />
+            <div class="photo-label">Photo 4</div>
+          </div>
+          <div class="photo">
+            <img src="images/photo-5.jpg" alt="Couple photo 5" />
+            <div class="photo-label">Photo 5</div>
+          </div>
+          <div class="photo">
+            <img src="images/photo-6.jpg" alt="Couple photo 6" />
+            <div class="photo-label">Photo 6</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rsvp">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Join us</div>
+          <h2>RSVP & details</h2>
+          <p>
+            You can keep this section simple, or replace the RSVP button with a Google Form, email link, or wedding website link.
+          </p>
+        </div>
+
+        <div class="rsvp">
+          <div class="card">
+            <h3>RSVP</h3>
+            <p>
+              Kindly respond by <strong>May 20, 2026</strong>.
+            </p>
+            <p>
+              <a class="button primary" href="mailto:youremail@example.com?subject=Wedding%20RSVP">Send RSVP</a>
+            </p>
+            <p>
+              You can also replace that button with a link to a Google Form like this:
+              <br />
+              <code>&lt;a href="YOUR_FORM_LINK"&gt;RSVP Here&lt;/a&gt;</code>
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Dress code & notes</h3>
+            <p><strong>Dress code:</strong> Garden formal</p>
+            <p><strong>Parking:</strong> On-site parking available</p>
+            <p><strong>Adults only:</strong> Optional line if needed</p>
+            <p><strong>Registry:</strong> Add your registry link here</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="travel">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">For our guests</div>
+          <h2>Travel information</h2>
+          <p>
+            This section is optional, but it’s helpful if guests are traveling from out of town.
+          </p>
+        </div>
+
+        <div class="travel-grid">
+          <div class="card">
+            <h3>Venue address</h3>
+            <p>
+              Willow Creek Garden Venue<br />
+              123 Celebration Lane<br />
+              Provo, UT 84604
+            </p>
+          </div>
+          <div class="card">
+            <h3>Nearby hotels</h3>
+            <p>
+              Add 2–3 suggested hotels or a booking block if you have one.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Things to know</h3>
+            <p>
+              Add weather tips, shuttle info, or any instructions guests should have before arriving.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Made with love for our favorite people. We can’t wait to celebrate with you.
+  </footer>
+</body>
+</html>
